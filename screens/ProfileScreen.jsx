@@ -5,7 +5,7 @@ import { styles } from '../styles/Login'
 export default function ProfileScreen({user}) {
   return (
     <View style={styles.container}>
-      <Text>{user}</Text>
+      <Text>ProfileScreen</Text>
     </View>
   )
 }

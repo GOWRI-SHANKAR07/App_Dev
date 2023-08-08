@@ -9,6 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import TabScreen from './screens/TabScreen';
+import Drawers from './screens/DrawerScreen';
+import { NotificationsScreen } from './screens/NotificationScreen';
 
 
 // creating stacknavigator
@@ -27,7 +29,9 @@ export default function App() {
         <Stack.Screen name='Tab' component={TabScreen} />
         <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='Signup' component={SignupScreen} />
-      </Stack.Navigator>
+        <Stack.Screen name='Notification' component={NotificationsScreen} />
+        <Stack.Screen name='HomeTab' component={Drawers} />
+        </Stack.Navigator>
     </NavigationContainer>
   );
 }

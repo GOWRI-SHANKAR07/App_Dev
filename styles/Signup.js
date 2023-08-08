@@ -13,7 +13,7 @@ container: {
 
 
 loginCont: {
-  justifyContent: 'start',
+  justifyContent: 'center',
   alignItems: 'center',
 //   borderWidth: 1,
 //   borderColor: '#000',
@@ -59,7 +59,7 @@ authCont: {
 btnCont: {
   marginTop: '10%',
   backgroundColor: '#00A8E8',
-  height: '12%',
+  height: '10%',
   borderRadius: 10,
   display: 'flex',
   justifyContent: 'center',

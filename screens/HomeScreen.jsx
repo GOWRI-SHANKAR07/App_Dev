@@ -4,9 +4,8 @@ import { styles } from "../styles/Home";
 export default function HomeScreen({ navigation, user }) {
     return (
       <View style={styles.container}>
-        <Text>{user}</Text>
         <Button
-          onPress={() => navigation.navigate('Notifications')}
+          onPress={() => navigation.navigate('Notification')}
           title="Go to notifications"
         />
       </View>

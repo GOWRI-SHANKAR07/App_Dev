@@ -18,9 +18,9 @@ const TabScreen = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
-                // headerStyle: { backgroundColor: '#00A8E8' },
-                // headerTintColor: '#fff',
-                // headerTitleStyle: { fontWeight: 'bold' },
+                headerStyle: { backgroundColor: '#00A8E8' },
+                headerTintColor: '#fff',
+                headerTitleStyle: { fontWeight: 'bold' },
                 tabBarActiveTintColor: '#00A8E8',
                 tabBarInactiveTintColor: 'gray',
                 tabBarIcon: ({ focused, color, size }) => {

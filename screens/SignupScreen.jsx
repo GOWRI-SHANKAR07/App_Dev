@@ -4,41 +4,21 @@ import { styles } from '../styles/Signup';
 
 
 const LoginScreen = ({ navigation }) => {
-
-    const [mail, setMail] = useState('');
+    const [name, setName] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [cfrmPasswordError, setCfrmPasswordError] = useState('')
 
-    const [user, setUser] = useState('');
-    const [pass, setPass] = useState('');
-
-    const [auth, setAuth] = useState(false);
-    const [authSuccess, setAuthSuccess] = useState(false);
 
     let userAuth = {
-        mail: 'gowrishankaroffl@gmail.com',
-        password: 'Sp@315',
+        name: '',
+        mail: '',
+        password: '',
     }
-
-    const handleLogin = () => {
-        if (mail === userAuth.mail && password === userAuth.password) {
-            setUser(mail);
-            setPass(password);
-            setMail('');
-            setPassword('');
-            setAuth(false);
-            setAuthSuccess(true);
-            console.log("Successfully Logged In");
-            navigation.navigate('Signup')
-        } else {
-            setAuth(true);
-            setAuthSuccess(false);
-            setMail('');
-            setPassword('');
-            console.log("Invalid mail or passsword");
-        }
-        console.log(mail, password);
-    }
-
 
     return (
         <View style={styles.container}>
@@ -55,8 +35,8 @@ const LoginScreen = ({ navigation }) => {
                             style={styles.inpTxt}
                             placeholder='Enter name'
                             placeholderTextColor='grey'
-                            value={mail}
-                            onChangeText={e => setMail(e)}
+                            value={name}
+                            onChangeText={e => setName(e)}
                         />
                     </View>
                     <Text style={styles.authTxt}>Email Address*</Text>
@@ -65,8 +45,8 @@ const LoginScreen = ({ navigation }) => {
                             style={styles.inpTxt}
                             placeholder='Enter email id'
                             placeholderTextColor='grey'
-                            value={mail}
-                            onChangeText={e => setMail(e)}
+                            value={email}
+                            onChangeText={e => setEmail(e)}
                         />
                     </View>
                     <Text style={styles.authTxt}>Password*</Text>
@@ -85,8 +65,8 @@ const LoginScreen = ({ navigation }) => {
                             style={styles.inpTxt}
                             placeholder='Enter password'
                             placeholderTextColor='grey'
-                            value={password}
-                            onChangeText={e => setPassword(e)}
+                            value={confirmPassword}
+                            onChangeText={e => setConfirmPassword(e)}
                         />
                     </View>
                     <TouchableOpacity
@@ -96,7 +76,6 @@ const LoginScreen = ({ navigation }) => {
                         <Text style={styles.btnTxt}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>
-                {authSuccess ? <Text style={styles.success}>Successfully Logged In, {user}</Text> : auth && <Text style={styles.error}>Invalid Mail id or Password</Text>}
             </View>
         </View>
     )

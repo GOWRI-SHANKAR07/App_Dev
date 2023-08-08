@@ -7,13 +7,13 @@ container: {
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#fff',
-  width: '100%',
   height: '100%',
+  width: '100%'
 },
 
 
 loginCont: {
-  justifyContent: 'start',
+  justifyContent: 'center',
   alignItems: 'center',
   // borderWidth: 1,
   // borderColor: '#000',

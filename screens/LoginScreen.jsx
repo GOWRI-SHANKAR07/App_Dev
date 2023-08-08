@@ -5,41 +5,50 @@ import { styles } from '../styles/Login';
 
 const LoginScreen = ({ navigation }) => {
 
-    const [mail, setMail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const [user, setUser] = useState('');
-    const [pass, setPass] = useState('');
-
-    const [auth, setAuth] = useState(false);
-    const [authSuccess, setAuthSuccess] = useState(false);
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [passwordError, setPasswordError] = useState("")
 
     let userAuth = {
         mail: 'gowrishankaroffl@gmail.com',
         password: 'Sp',
     }
 
+
     const handleLogin = () => {
-        if (mail === userAuth.mail && password === userAuth.password) {
-            setUser(mail);
-            console.log(user);
-            setPass(password);
-            setMail('');
-            setPassword('');
-            setAuth(false);
-            setAuthSuccess(true);
-            console.log("Successfully Logged In", mail);
-            navigation.navigate('Home', {
-                user: mail
-            })
-        } else {
-            setAuth(true);
-            setAuthSuccess(false);
-            setMail('');
-            setPassword('');
-            console.log("Invalid mail or passsword");
+        let emailValid = false;
+        if (email.length == 0) {
+            setEmailError("Email is required");
+        } else if (email.indexOf(' ') >= 0) {
+            setEmailError('Email cannot contain spaces');
         }
-        console.log(mail, password);
+        else {
+            setEmailError("");
+            emailValid = true;
+        }
+
+        let passwordValid = false;
+        if (password.length === 0) {
+            setPasswordError("Password is required");
+        } else if (password.indexOf(' ') >= 0) {
+            setPasswordError('Password cannot contain spaces');
+        }
+        else {
+            setPasswordError("")
+            passwordValid = true
+        }
+
+        if (email === userAuth.mail && password === userAuth.password) {
+            alert('Email: ' + email + '\nPassword: ' + password + '\n Successfully Logged In');
+            setEmail("");
+            setPassword("");
+        } else {
+            alert('Invalid mail id or password')
+            setEmail('');
+            setPassword('');
+        }
+        console.log(emailError, passwordError);
     }
 
 
@@ -58,10 +67,12 @@ const LoginScreen = ({ navigation }) => {
                             style={styles.inpTxt}
                             placeholder='Enter email id'
                             placeholderTextColor='grey'
-                            value={mail}
-                            onChangeText={e => setMail(e)}
+                            value={email}
+                            onChangeText={e => setEmail(e)}
+                            textContentType='emailAddress'
                         />
                     </View>
+                    {emailError.length > 0 && <Text style={styles.error}>{emailError}</Text>}
                     <Text style={styles.authTxt}>Password*</Text>
                     <View style={styles.authCont}>
                         <TextInput
@@ -72,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
                             onChangeText={e => setPassword(e)}
                         />
                     </View>
+                    {passwordError.length > 0  && <Text style={styles.error}>{passwordError}</Text>}
                     <TouchableOpacity
                         style={styles.btnCont}
                         onPress={() => handleLogin()}
@@ -79,7 +91,6 @@ const LoginScreen = ({ navigation }) => {
                         <Text style={styles.btnTxt}>Login</Text>
                     </TouchableOpacity>
                 </View>
-                {authSuccess ? <Text style={styles.success}>Successfully Logged In, {user}</Text> : auth && <Text style={styles.error}>Invalid Mail id or Password</Text>}
             </View>
         </View>
     )
