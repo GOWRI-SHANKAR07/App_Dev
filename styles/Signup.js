@@ -4,19 +4,27 @@ const styles = StyleSheet.create({
 
 container: {
   display: 'flex',
+  flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#fff',
-  width: '100%',
-  height: '100%',
+  // width: '100%',
+  // height: '100%',
+  // borderColor: '#000',
+  // borderWidth: 2,
 },
 
+scrollCont: {
+  flex: 1,
+},
 
 loginCont: {
+  display: 'flex',
+  flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
-//   borderWidth: 1,
-//   borderColor: '#000',
+  // borderWidth: 1,
+  // borderColor: '#000',
   width: '80%',
   height: '100%',
   paddingTop: '10%'
@@ -28,9 +36,12 @@ loginTxt: {
   fontSize: 20,
 },
 
+
 logo: {
-  width: '35%',
-  height: '6%'
+  width: '54%',
+  height: '9%',
+  // borderWidth: 1,
+  // borderColor: '#000',
 },
 
 inpCont: {

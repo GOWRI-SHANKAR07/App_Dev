@@ -3,17 +3,16 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/Login';
 
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, route }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
 
-    let userAuth = {
-        mail: 'gowrishankaroffl@gmail.com',
-        password: 'Sp',
-    }
+    const mail = route.params.user.mail;
+    const name = route.params.user.name;
+    const pass = route.params.password;
 
 
     const handleLogin = () => {
@@ -39,8 +38,8 @@ const LoginScreen = ({ navigation }) => {
             passwordValid = true
         }
 
-        if (email === userAuth.mail && password === userAuth.password) {
-            alert('Email: ' + email + '\nPassword: ' + password + '\n Successfully Logged In');
+        if (email === route.params.user.mail && password === route.params.user.password) {
+            alert('Name: ' + name + '\nEmail: ' + email + '\nPassword: ' + password + '\n Successfully Logged In');
             setEmail("");
             setPassword("");
         } else {
@@ -49,6 +48,9 @@ const LoginScreen = ({ navigation }) => {
             setPassword('');
         }
         console.log(emailError, passwordError);
+
+        console.log(route.params.user.mail);
+
     }
 
 

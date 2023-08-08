@@ -11,6 +11,7 @@ import HomeScreen from './screens/HomeScreen';
 import TabScreen from './screens/TabScreen';
 import Drawers from './screens/DrawerScreen';
 import { NotificationsScreen } from './screens/NotificationScreen';
+import KeyboardAvoidingComponent from './components/KeyboardAvoidingWrapper';
 
 
 // creating stacknavigator
@@ -23,7 +24,7 @@ export default function App() {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName= 'Login'
+        initialRouteName= 'Signup'
       >
         <Stack.Screen name='Home' component={HomeScreen} />
         <Stack.Screen name='Tab' component={TabScreen} />
@@ -31,6 +32,7 @@ export default function App() {
         <Stack.Screen name='Signup' component={SignupScreen} />
         <Stack.Screen name='Notification' component={NotificationsScreen} />
         <Stack.Screen name='HomeTab' component={Drawers} />
+        <Stack.Screen name='Keyboard' component={KeyboardAvoidingComponent} />
         </Stack.Navigator>
     </NavigationContainer>
   );
