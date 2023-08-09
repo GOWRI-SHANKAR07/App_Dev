@@ -12,6 +12,10 @@ import TabScreen from './screens/TabScreen';
 import Drawers from './screens/DrawerScreen';
 import { NotificationsScreen } from './screens/NotificationScreen';
 import KeyboardAvoidingComponent from './components/KeyboardAvoidingWrapper';
+import ScrolledViewScreen from './screens/ScrollViewScree';
+import PostScreen from './screens/PostScreen';
+import PostCard from './components/Blogs/PostCard';
+import PostListScreen from './screens/PostListScreen';
 
 
 // creating stacknavigator
@@ -24,7 +28,7 @@ export default function App() {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName= 'Signup'
+        initialRouteName='Tab'
       >
         <Stack.Screen name='Home' component={HomeScreen} />
         <Stack.Screen name='Tab' component={TabScreen} />
@@ -33,7 +37,11 @@ export default function App() {
         <Stack.Screen name='Notification' component={NotificationsScreen} />
         <Stack.Screen name='HomeTab' component={Drawers} />
         <Stack.Screen name='Keyboard' component={KeyboardAvoidingComponent} />
-        </Stack.Navigator>
+        <Stack.Screen name='Scroll' component={ScrolledViewScreen} />
+        <Stack.Screen name='Post' component={PostScreen} />
+        <Stack.Screen name='Postcard' component={PostCard} />
+        <Stack.Screen name='Postlist' component={PostListScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

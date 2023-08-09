@@ -8,6 +8,7 @@ import ProfileScreen from './ProfileScreen';
 import DrawerScreen from './DrawerScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { FeedbackScreen, NotificationsScreen } from './DrawerScreen';
+import PostListScreen from './PostListScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -25,7 +26,7 @@ const TabScreen = () => {
                 tabBarInactiveTintColor: 'gray',
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
-                    if (route.name === 'HomeTab') {
+                    if (route.name === 'Products') {
                         iconName = focused
                             ? 'home-circle'
                             : 'home-circle-outline';
@@ -49,7 +50,7 @@ const TabScreen = () => {
             })}
             initialRouteName='HomeTab'
         >
-            <Tab.Screen name='HomeTab' component={DrawerScreen} />
+            <Tab.Screen name='Products' component={PostListScreen} />
             <Tab.Screen name='SettingsTab' component={SettingsScreen} />
             <Tab.Screen name='ProfileTab' component={ProfileScreen} />
         </Tab.Navigator>

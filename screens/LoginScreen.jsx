@@ -88,7 +88,7 @@ const LoginScreen = ({ navigation, route }) => {
                     {passwordError.length > 0  && <Text style={styles.error}>{passwordError}</Text>}
                     <TouchableOpacity
                         style={styles.btnCont}
-                        onPress={() => handleLogin()}
+                        onPress={e=> handleLogin(e)}
                     >
                         <Text style={styles.btnTxt}>Login</Text>
                     </TouchableOpacity>
