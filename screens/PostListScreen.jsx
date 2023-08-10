@@ -7,11 +7,16 @@ const PostListScreen = () => {
 
   const [newsData, setNewsData] = useState(null)
 
-  fetch('https://fakestoreapi.com/products?limit=15')
-    .then(res => res.json())
-    .then(data => setNewsData(data))
-    .then(console.log(newsData))
-    .catch(error => console.error('Error fetching data:', error));
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products?limit=15')
+      .then(res => res.json())
+      .then(data => setNewsData(data))
+      .then(console.log(newsData))
+      .catch(error => console.error('Error fetching data:', error));
+  }, [])
+
+
+
 
 
   return (
@@ -19,7 +24,7 @@ const PostListScreen = () => {
       backgroundColor: 'white',
       marginTop: 25,
     }}>
-    <Text style={styles.headerTxt}>Products</Text>
+      <Text style={styles.headerTxt}>Product</Text>
       <FlatList
         data={newsData}
         keyExtractor={(item) => item.id.toString()}
