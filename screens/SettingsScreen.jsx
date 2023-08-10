@@ -1,47 +1,177 @@
-import { View, Text, SafeAreaView, SectionList } from 'react-native'
-import React from 'react'
-import { styles } from '../styles/Login'
+//React Native ActivityIndicator
+//https://aboutreact.com/react-native-activity-indicator/
 
-const data = [
+//import React in our code
+import React, { useEffect, useState } from 'react';
+
+//import all the components we are going to use
+import {
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  ActivityIndicator,
+  SectionList,
+  FlatList,
+  Image,
+} from 'react-native';
+import PostCard from '../components/Blogs/PostCard';
+
+const news = [
   {
-    title: 'Frameworks',
-    data: ['React', 'Angular', 'React - native']
+    "title": "Product1",
+    "data": [
+      {
+        "category": "men's clothing",
+        "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+        "id": 1,
+        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        "price": 109.95,
+        "rating": { "count": 120, "rate": 3.9 },
+        "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+      }
+    ]
   },
   {
-    title: 'Languages',
-    data: ['javascript', 'Kotlin', 'Swift']
-  }
+    "title": "Product2",
+    "data": [
+      {
+        "category": "men's clothing",
+        "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+        "id": 2,
+        "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+        "price": 22.3,
+        "rating": { "count": 259, "rate": 4.1 },
+        "title": "Mens Casual Premium Slim Fit T-Shirts "
+      }
+    ]
+  },
+  {
+    "title": "Product3",
+    "data": [
+      {
+        "category": "men's clothing",
+        "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+        "id": 3,
+        "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+        "price": 55.99,
+        "rating": { "count": 500, "rate": 4.7 },
+        "title": "Mens Cotton Jacket"
+      }
+    ]
+  },
+  {
+    "title": "Product3",
+    "data": [
+      {
+        "category": "men's clothing",
+        "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+        "id": 4,
+        "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+        "price": 15.99,
+        "rating": { "count": 430, "rate": 2.1 },
+        "title": "Mens Casual Slim Fit"
+      }]
+  },
+
 ]
 
-export default function SettingsScreen() {
 
-  function Item({ title }) {
+const Products = () => {
+
+  const [newsData, setNewsData] = useState(['']);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(data => {
+        setNewsData(data);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      });
+  }, [])
+
+  console.log(newsData);
+
+
+  const Item = ({ items }) => {
+    console.log(items, "ITEMS")
     return (
-      <SafeAreaView style={{
-        flexDirection: 'row',
-        justifySelf: "center",
-        alignItems: 'center',
-        backgroundColor: 'white',
-        padding: 10,
-        elevation: 10,
-      }}>
-        <Text>{title}</Text>
-      </SafeAreaView>
-    );
+      <View>
+        <Text>₹{items.price}</Text>
+        <View>
+          <Text>{items.rating.rate}</Text>
+        </View>
+      </View>
+    )
   }
 
   return (
-    <SafeAreaView style={{
-      marginTop: 20,
-    }}>
-      <SectionList
-        sections={data}
-        keyExtractor={(item, index) => item + index}
-        renderItem={({ item }) => <Item title={item} />}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.title}>{title}</Text>
-        )}
-      />
-    </SafeAreaView>
-  )
-}
+    <SafeAreaView style={{ flex: 1 }}>
+      {isLoading ?
+        (
+          <SafeAreaView
+            style={{
+              backgroundColor: '#fff',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+              color: '#000'
+            }}
+          >
+            <ActivityIndicator
+              //visibility of Overlay Loading Spinner
+              visible={isLoading}
+              textStyle={styles.spinnerTextStyle}
+              size={50}
+              color={'#00A8E8'}
+            />
+          </SafeAreaView>
+        ) :
+        (
+          <View style={styles.container}>
+            <Text style={{ textAlign: 'center', fontSize: 20 }}>
+              React Native Section List
+            </Text>
+            <SectionList
+              sections={news}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <PostCard items={item} />
+              )}
+              renderSectionHeader={({ section }) => (
+                <Text style={styles.taskTitle}>{section.title}</Text>
+              )}
+            />
+          </View>
+        )
+      }
+    </SafeAreaView >
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    textAlign: 'center',
+    paddingTop: 30,
+    backgroundColor: '#ecf0f1',
+    padding: 20,
+  },
+  taskTitle: {
+    paddingTop: 20,
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  spinnerTextStyle: {
+    color: '#000',
+  },
+});
+
+export default Products;
