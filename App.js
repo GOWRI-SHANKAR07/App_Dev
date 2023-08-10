@@ -16,6 +16,7 @@ import ScrolledViewScreen from './screens/ScrollViewScree';
 import PostScreen from './screens/PostScreen';
 import PostCard from './components/Blogs/PostCard';
 import PostListScreen from './screens/PostListScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 
 // creating stacknavigator
@@ -28,7 +29,7 @@ export default function App() {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName='Tab'
+        initialRouteName='Settings'
       >
         <Stack.Screen name='Home' component={HomeScreen} />
         <Stack.Screen name='Tab' component={TabScreen} />
@@ -41,6 +42,7 @@ export default function App() {
         <Stack.Screen name='Post' component={PostScreen} />
         <Stack.Screen name='Postcard' component={PostCard} />
         <Stack.Screen name='Postlist' component={PostListScreen} />
+        <Stack.Screen name='Settings' component={SettingsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
