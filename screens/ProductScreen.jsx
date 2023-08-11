@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   spinnerTextStyle: {
-    color: '#000',
+    color: '#fff',
   },
   secCont: {
     margin: 20,
