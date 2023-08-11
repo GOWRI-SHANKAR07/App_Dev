@@ -3,11 +3,12 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { styles } from '../styles/Login'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import SettingsScreen from './SettingsScreen';
+import ProductScreen from './ProductScreen';
 import ProfileScreen from './ProfileScreen';
 import DrawerScreen from './DrawerScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { FeedbackScreen, NotificationsScreen } from './DrawerScreen';
+import { Entypo } from '@expo/vector-icons'; 
+import Drawers, { FeedbackScreen, NotificationsScreen } from './DrawerScreen';
 import PostListScreen from './PostListScreen';
 
 
@@ -26,18 +27,18 @@ const TabScreen = () => {
                 tabBarInactiveTintColor: 'gray',
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
-                    if (route.name === 'Products') {
+                    if (route.name === 'Home') {
                         iconName = focused
-                            ? 'home-circle'
-                            : 'home-circle-outline';
-                    } else if (route.name === 'SettingsTab') {
+                            ? 'home'
+                            : 'home-outline';
+                    } else if (route.name === 'Products') {
                         iconName = focused
-                            ? 'account-settings'
-                            : 'account-settings-outline';
-                    } else if (route.name === 'ProfileTab') {
+                            ? 'shopping'
+                            : 'shopping-outline';
+                    } else if (route.name === 'Profile') {
                         iconName = focused
-                            ? 'account-circle'
-                            : 'account-circle-outline';
+                            ? 'account'
+                            : 'account-outline';
                     }
                     return (
                         <MaterialCommunityIcons
@@ -50,9 +51,9 @@ const TabScreen = () => {
             })}
             initialRouteName='HomeTab'
         >
-            <Tab.Screen name='Products' component={PostListScreen} />
-            <Tab.Screen name='SettingsTab' component={SettingsScreen} />
-            <Tab.Screen name='ProfileTab' component={ProfileScreen} />
+            <Tab.Screen name='Home' component={Drawers } />
+            <Tab.Screen name='Products' component={ProductScreen} />
+            <Tab.Screen name='Profile' component={ProfileScreen} />
         </Tab.Navigator>
     )
 }

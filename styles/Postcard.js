@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         borderRadius: 5,
+        margin: 10,
     },
     shadowContainer: {
         flexDirection: 'row',
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 10,
         elevation: 10,
+        borderRadius: 5
     },
     newsItemWrapper: {
         flexDirection: 'row',

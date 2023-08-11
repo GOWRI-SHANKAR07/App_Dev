@@ -1,7 +1,3 @@
-//React Native ActivityIndicator
-//https://aboutreact.com/react-native-activity-indicator/
-
-//import React in our code
 import React, { useEffect, useState } from 'react';
 
 //import all the components we are going to use
@@ -15,8 +11,10 @@ import {
   SectionList,
   FlatList,
   Image,
+  useColorScheme,
 } from 'react-native';
 import PostCard from '../components/Blogs/PostCard';
+import { useColorSchemeContext } from '../theme/ColorSchemeContext';
 
 const news = [
   {
@@ -62,7 +60,7 @@ const news = [
     ]
   },
   {
-    "title": "Product3",
+    "title": "Product4",
     "data": [
       {
         "category": "men's clothing",
@@ -80,14 +78,19 @@ const news = [
 
 const Products = () => {
 
-  const [newsData, setNewsData] = useState(['']);
+  const [newsData, setNewsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { colorScheme } = useColorSchemeContext();
+
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
-      .then(data => {
-        setNewsData(data);
+      .then(res => {
+        const sectionData = [{ title: 'Products', data: res }]
+        console.log(sectionData);
+        setNewsData(sectionData);
         setIsLoading(false);
       })
       .catch(error => {
@@ -96,7 +99,6 @@ const Products = () => {
       });
   }, [])
 
-  console.log(newsData);
 
 
   const Item = ({ items }) => {
@@ -117,7 +119,7 @@ const Products = () => {
         (
           <SafeAreaView
             style={{
-              backgroundColor: '#fff',
+              backgroundColor: colorScheme === 'dark' ? '#000' : "#fff",
               justifyContent: 'center',
               alignItems: 'center',
               height: '100%',
@@ -134,18 +136,18 @@ const Products = () => {
           </SafeAreaView>
         ) :
         (
-          <View style={styles.container}>
-            <Text style={{ textAlign: 'center', fontSize: 20 }}>
+          <View style={[styles.container, {backgroundColor: colorScheme === 'dark' ? '#3F2E3E' : '#00B1A1'}]}>
+            <Text style={{ textAlign: 'center', fontSize: 20, color: colorScheme === 'dark' ? '#fff' : '#000' }}>
               React Native Section List
             </Text>
             <SectionList
-              sections={news}
+              sections={newsData}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <PostCard items={item} />
               )}
               renderSectionHeader={({ section }) => (
-                <Text style={styles.taskTitle}>{section.title}</Text>
+                <Text style={[styles.taskTitle, {color: colorScheme === 'dark' ? '#fff' : '#000'}]}>{section.title}</Text>
               )}
             />
           </View>
@@ -161,7 +163,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     paddingTop: 30,
-    backgroundColor: '#ecf0f1',
     padding: 20,
   },
   taskTitle: {
@@ -171,6 +172,10 @@ const styles = StyleSheet.create({
   },
   spinnerTextStyle: {
     color: '#000',
+  },
+  secCont: {
+    margin: 20,
+    backgroundColor: '#000'
   },
 });
 

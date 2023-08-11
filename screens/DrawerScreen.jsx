@@ -6,10 +6,11 @@ import { styles } from '../styles/Home';
 import HomeScreen from './HomeScreen';
 import { NotificationsScreen } from './NotificationScreen';
 import ProfileScreen from './ProfileScreen';
-import SettingsScreen from './SettingsScreen';
+import SettingsScreen from './ProductScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 
 

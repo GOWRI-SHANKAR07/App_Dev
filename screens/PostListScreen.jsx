@@ -11,11 +11,8 @@ const PostListScreen = () => {
     fetch('https://fakestoreapi.com/products?limit=15')
       .then(res => res.json())
       .then(data => setNewsData(data))
-      .then(console.log(newsData))
       .catch(error => console.error('Error fetching data:', error));
   }, [])
-
-
 
 
 
