@@ -50,7 +50,9 @@ const styles = StyleSheet.create({
     },
     ratingTxt: {
         fontSize: 14,
-        color: '#00A8E8'
+        color: '#00A8E8',
+        paddingLeft: 5,
+        paddingTop: 3
     }
 });
 
