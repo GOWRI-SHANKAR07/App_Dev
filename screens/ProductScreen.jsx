@@ -119,7 +119,7 @@ const Products = () => {
         (
           <SafeAreaView
             style={{
-              backgroundColor: colorScheme === 'dark' ? '#000' : "#fff",
+              backgroundColor: colorScheme === 'dark' ? '#1a1111' : "#fff",
               justifyContent: 'center',
               alignItems: 'center',
               height: '100%',
@@ -136,7 +136,7 @@ const Products = () => {
           </SafeAreaView>
         ) :
         (
-          <View style={[styles.container, {backgroundColor: colorScheme === 'dark' ? '#3F2E3E' : '#00B1A1'}]}>
+          <SafeAreaView style={[styles.container, {backgroundColor: colorScheme === 'dark' ? '#1a1111' : '#fff'}]}>
             <Text style={{ textAlign: 'center', fontSize: 20, color: colorScheme === 'dark' ? '#fff' : '#000' }}>
               React Native Section List
             </Text>
@@ -150,7 +150,7 @@ const Products = () => {
                 <Text style={[styles.taskTitle, {color: colorScheme === 'dark' ? '#fff' : '#000'}]}>{section.title}</Text>
               )}
             />
-          </View>
+          </SafeAreaView>
         )
       }
     </SafeAreaView >

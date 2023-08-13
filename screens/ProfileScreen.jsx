@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, StyleSheet } from 'react-native';
 import { useColorSchemeContext } from '../theme/ColorSchemeContext';
 import { ToggleButton } from '../components/ToggleButton';
 
@@ -8,7 +8,7 @@ const ProfileScreen = () => {
 
   const containerStyle = {
     ...styles.container,
-    backgroundColor: colorScheme === 'dark' ? '#333' : '#fff',
+    backgroundColor: colorScheme === 'dark' ? '#1a1111' : '#fff',
   };
 
   const textStyle = {
@@ -17,10 +17,11 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={containerStyle}>
+    <SafeAreaView style={containerStyle}>
       <Text style={textStyle}>Welcome to Home Screen</Text>
+      <Text style={textStyle}>{colorScheme === 'dark' ? 'Dark Mode' : 'Light Mode'}</Text>
       <ToggleButton />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontWeight: 'bold',
+    paddingBottom: 10,
   },
 });
 
