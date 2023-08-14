@@ -21,9 +21,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },      
-      "userInterfaceStyle": "automatic"
-
+      },
+      "userInterfaceStyle": "automatic",
+      "package": "com.anonymous.App"
     },
     "web": {
       "favicon": "./assets/favicon.png"

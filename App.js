@@ -1,6 +1,3 @@
-import 'react-native-gesture-handler';
-
-
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
@@ -19,6 +16,8 @@ import PostListScreen from './screens/PostListScreen';
 import SettingsScreen from './screens/ProductScreen';
 import { useEffect } from 'react';
 import { ColorSchemeProvider } from './theme/ColorSchemeContext';
+import SecureStorageScreen from './screens/SecureStorageScreen';
+import MMKVScreen from './screens/MMKVScreen';
 
 // creating stacknavigator
 const Stack = createNativeStackNavigator();
@@ -54,6 +53,8 @@ export default function App() {
           <Stack.Screen name='Postcard' component={PostCard} />
           <Stack.Screen name='Postlist' component={PostListScreen} />
           <Stack.Screen name='Settings' component={SettingsScreen} />
+          <Stack.Screen name='SecureStore' component={SecureStorageScreen} />
+          <Stack.Screen name='Mmkv' component={MMKVScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ColorSchemeProvider>
