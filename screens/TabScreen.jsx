@@ -11,6 +11,9 @@ import Drawers, { FeedbackScreen, NotificationsScreen } from './DrawerScreen';
 import PostListScreen from './PostListScreen';
 import { useColorSchemeContext } from '../theme/ColorSchemeContext';
 import { DarkTheme } from '@react-navigation/native';
+import HomeScreen from './HomeScreen';
+import SecureStorageScreen from './SecureStorageScreen';
+import MMKVScreen from './MMKVScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -32,11 +35,11 @@ const TabScreen = () => {
                 tabBarInactiveTintColor: colorScheme === 'dark' ? 'gray' :  '#fff',
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
-                    if (route.name === 'PostList') {
+                    if (route.name === 'HomeTab') {
                         iconName = focused
                             ? 'post'
                             : 'post-outline';
-                    } else if (route.name === 'Products') {
+                    } else if (route.name === 'SecureStore') {
                         iconName = focused
                             ? 'shopping'
                             : 'shopping-outline';
@@ -56,8 +59,8 @@ const TabScreen = () => {
             })}
             initialRouteName='HomeTab'
         >
-            <Tab.Screen name='PostList' component={PostListScreen} />
-            <Tab.Screen name='Products' component={ProductScreen} />
+            <Tab.Screen name='HomeTab' component={HomeScreen} />
+            <Tab.Screen name='SecureStore' component={SecureStorageScreen} />
             <Tab.Screen name='Profile' component={ProfileScreen} />
         </Tab.Navigator>
     )
