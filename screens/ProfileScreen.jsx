@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text, StyleSheet } from 'react-native';
 import { useColorSchemeContext } from '../theme/ColorSchemeContext';
-import { ToggleButton } from '../components/ToggleButton';
+import { Logout, ToggleTheme } from '../components/ToggleButton';
 
 const ProfileScreen = () => {
   const { colorScheme } = useColorSchemeContext(); // Access the color scheme
@@ -20,7 +20,8 @@ const ProfileScreen = () => {
     <SafeAreaView style={containerStyle}>
       <Text style={textStyle}>Welcome to Home Screen</Text>
       <Text style={textStyle}>{colorScheme === 'dark' ? 'Dark Mode' : 'Light Mode'}</Text>
-      <ToggleButton />
+      <ToggleTheme />
+      <Logout />
     </SafeAreaView>
   );
 };

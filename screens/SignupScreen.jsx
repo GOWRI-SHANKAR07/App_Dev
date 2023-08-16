@@ -138,6 +138,13 @@ const SignupScreen = ({ navigation }) => {
                         <Text style={styles.btnTxt}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>
+                <Text>Don't have an account ?
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Login')}
+                    >
+                        <Text> Login</Text>
+                    </TouchableOpacity>
+                </Text>
             </View>
         </SafeAreaView>
     )
