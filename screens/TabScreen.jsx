@@ -7,7 +7,8 @@ import ProfileScreen from './ProfileScreen';
 import DrawerScreen from './DrawerScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Entypo } from '@expo/vector-icons';
-import Drawers, { FeedbackScreen, NotificationsScreen } from './DrawerScreen';
+import Drawers, { FeedbackScreen} from './DrawerScreen';
+import { NotificationsScreen } from './NotificationScreen';
 import PostListScreen from './PostListScreen';
 import { useColorSchemeContext } from '../theme/ColorSchemeContext';
 import { DarkTheme } from '@react-navigation/native';
@@ -35,11 +36,11 @@ const TabScreen = () => {
                 tabBarInactiveTintColor: colorScheme === 'dark' ? 'gray' :  '#fff',
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
-                    if (route.name === 'HomeTab') {
+                    if (route.name === 'Products') {
                         iconName = focused
                             ? 'post'
                             : 'post-outline';
-                    } else if (route.name === 'SecureStore') {
+                    } else if (route.name === 'Notifications') {
                         iconName = focused
                             ? 'shopping'
                             : 'shopping-outline';
@@ -57,10 +58,10 @@ const TabScreen = () => {
                     );
                 }
             })}
-            initialRouteName='HomeTab'
+            initialRouteName='Products'
         >
-            <Tab.Screen name='HomeTab' component={HomeScreen} />
-            <Tab.Screen name='SecureStore' component={SecureStorageScreen} />
+            <Tab.Screen name='Products' component={ProductScreen} />
+            <Tab.Screen name='Notifications' component={NotificationsScreen} />
             <Tab.Screen name='Profile' component={ProfileScreen} />
         </Tab.Navigator>
     )
