@@ -26,31 +26,27 @@ import ProfileScreen from './screens/ProfileScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
+  // accessing curret color theme
   const colorScheme = useColorScheme();
 
+  // initial route state
   const [initialRoute, setInitialRoute] = useState('');
-
 
   useEffect(() => {
     console.log(colorScheme);
     console.log("Checking Auth State");
     checkLoginStatus();
   }, [])
-  
 
 
   // checking Login in Status
   const checkLoginStatus = async () => {
     try {
       const userToken = await AsyncStorage.getItem('userToken');
-      console.log("Log from App.js ", userToken);
       if (userToken) {
         setInitialRoute('Tab');
-        console.log("Route is Tab");
       } else {
         setInitialRoute('Login');
-        console.log("Route is Login");
       }
     } catch (error) {
       console.error('Error checking login status:', error);

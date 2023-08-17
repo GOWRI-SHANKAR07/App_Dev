@@ -71,7 +71,7 @@ const UserDataStorage = () => {
   console.log(displayedUser);
 
   return (
-    <SafeAreaView
+    <View
       style={
         [styles.container,
         { backgroundColor: colorScheme === 'dark' ? '#1a1111' : '#fff' }
@@ -151,7 +151,7 @@ const UserDataStorage = () => {
       >
         <Text style={styles.btnTxt}>Remove User</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 };
 
