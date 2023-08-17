@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { styles } from '../styles/Login';
+import { Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuthContext } from '../Auth/AuthContext';
+import { styles } from '../styles/Login';
 
 
 const LoginScreen = ({ navigation, route }) => {
@@ -118,16 +118,19 @@ const LoginScreen = ({ navigation, route }) => {
                         <Text style={styles.btnTxt}>Login</Text>
                     </TouchableOpacity>
                 </View>
+                <View style={styles.signupCont}>
+                    <Text>Don't have an account ?</Text>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Signup')}
+                    >
+                        <Text style={styles.signupTxt}>  Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <Text>Don't have an account ?
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Signup')}
-                >
-                    <Text> Sign Up</Text>
-                </TouchableOpacity>
-            </Text>
         </View>
     )
 }
+
+
 
 export default LoginScreen

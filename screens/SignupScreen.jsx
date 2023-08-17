@@ -138,16 +138,17 @@ const SignupScreen = ({ navigation }) => {
                         <Text style={styles.btnTxt}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>
-                <Text>Don't have an account ?
+                <View style={styles.signupCont}>
+                    <Text>Don't have an account ?</Text>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Login')}
                     >
-                        <Text> Login</Text>
+                        <Text style={styles.signupTxt}>  Sign In</Text>
                     </TouchableOpacity>
-                </Text>
+                </View>
             </View>
         </SafeAreaView>
     )
 }
 
-export default SignupScreen
+export default SignupScreen;
