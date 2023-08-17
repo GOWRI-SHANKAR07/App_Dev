@@ -18,19 +18,6 @@ export const ToggleTheme = () => {
     )
 }
 
-export const Logout = () => {
-    const { colorScheme, toggleColorScheme } = useColorSchemeContext();
-    const { logout } = useAuthContext();
-
-    return (
-        <TouchableOpacity
-            style={[styles.button, { backgroundColor: colorScheme === 'dark' ? '#fff' : '#000' }]}
-            onPress={logout}
-        >
-            <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#000' : '#fff' }]}>Logout</Text>
-        </TouchableOpacity>
-    )
-}
 
 
 
