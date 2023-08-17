@@ -11,18 +11,13 @@ export const useAuthContext = () => {
 
 const AuthContextProvider = ({ children }) => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
     const [userToken, setUserToken] = useState('');
-
 
     const login = async () => {
         try {
             const token = 'user123';
             await AsyncStorage.setItem('userToken', token);
             setUserToken(token);
-            setIsLoggedIn(true);
         } catch (err) {
             console.log("Error Logging In ", err);
         }
@@ -32,8 +27,6 @@ const AuthContextProvider = ({ children }) => {
         try {
             await AsyncStorage.removeItem('userToken');
             setUserToken('');
-            setIsLoggedIn(false);
-            console.log("user,", userToken);
             console.log("Logout pressed");
         } catch (err) {
             console.log("Error Logging Out ", err);
@@ -41,7 +34,7 @@ const AuthContextProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ login, logout, user: userToken }} >
+        <AuthContext.Provider value={{ login, logout, user: userToken,}} >
             {children}
         </AuthContext.Provider>
     )
