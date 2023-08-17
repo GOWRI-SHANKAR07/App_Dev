@@ -72,34 +72,51 @@ const news = [
         "title": "Mens Casual Slim Fit"
       }]
   },
-
 ]
 
 
 const Products = () => {
 
   const [newsData, setNewsData] = useState([]);
+  const [originalData, setOriginalData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const { colorScheme } = useColorSchemeContext();
 
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://fakestoreapi.com/products/')
       .then(res => res.json())
       .then(res => {
-        const sectionData = [{ title: 'Products', data: res }]
-        console.log(sectionData);
-        setNewsData(sectionData);
+        setOriginalData(res);
+        setNewsData(convertData);
         setIsLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
         setIsLoading(false);
       });
-  }, [])
+  }, [newsData])
 
+  let convertData = [];
+  convertData = originalData.map(item => {
+    return {
+      title: `Product${item.id}`,
+      data: [
+        {
+          category: item.category,
+          description: item.description,
+          id: item.id,
+          image: item.image,
+          price: item.price,
+          rating: item.rating,
+          title: item.title
+        }
+      ]
+    }
+  })
 
+console.log(convertData);
 
   const Item = ({ items }) => {
     console.log(items, "ITEMS")
@@ -114,10 +131,10 @@ const Products = () => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       {isLoading ?
         (
-          <SafeAreaView
+          <View
             style={{
               backgroundColor: colorScheme === 'dark' ? '#1a1111' : "#fff",
               justifyContent: 'center',
@@ -133,10 +150,10 @@ const Products = () => {
               size={50}
               color={'#00A8E8'}
             />
-          </SafeAreaView>
+          </View>
         ) :
         (
-          <SafeAreaView style={[styles.container, {backgroundColor: colorScheme === 'dark' ? '#1a1111' : '#fff'}]}>
+          <View style={[styles.container, { backgroundColor: colorScheme === 'dark' ? '#1a1111' : '#fff' }]}>
             <Text style={{ textAlign: 'center', fontSize: 20, color: colorScheme === 'dark' ? '#fff' : '#000' }}>
               React Native Section List
             </Text>
@@ -147,18 +164,18 @@ const Products = () => {
                 <PostCard items={item} />
               )}
               renderSectionHeader={({ section }) => (
-                <Text style={[styles.taskTitle, {color: colorScheme === 'dark' ? '#fff' : '#000'}]}>{section.title}</Text>
+                <Text style={[styles.taskTitle, { color: colorScheme === 'dark' ? '#fff' : '#000' }]}>{section.title}</Text>
               )}
             />
-          </SafeAreaView>
-        )
+          </View> 
+        ) 
       }
-    </SafeAreaView >
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: { 
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
