@@ -12,62 +12,17 @@ const LoginScreen = ({ navigation, route }) => {
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
 
-    // const mail = route.params.user.mail;
-    // const name = route.params.user.name;
-    // const pass = route.params.user.password;
-
-
-
-    // const handleLogin = () => {
-    //     let emailValid = false;
-    //     if (email.length == 0) {
-    //         setEmailError("Email is required");
-    //     } else if (email.indexOf(' ') >= 0) {
-    //         setEmailError('Email cannot contain spaces');
-    //     }
-    //     else {
-    //         setEmailError("");
-    //         emailValid = true;
-    //     }
-
-    //     let passwordValid = false;
-    //     if (password.length === 0) {
-    //         setPasswordError("Password is required");
-    //     } else if (password.indexOf(' ') >= 0) {
-    //         setPasswordError('Password cannot contain spaces');
-    //     }
-    //     else {
-    //         setPasswordError("")
-    //         passwordValid = true
-    //     }
-
-    //     if (email === route.params.user.mail && password === route.params.user.password) {
-    //         alert('Name: ' + name + '\nEmail: ' + email + '\nPassword: ' + password + '\n Successfully Logged In');
-    //         setEmail("");
-    //         setPassword("");
-    //         toggleAuthState();
-
-    //     } else {
-    //         alert('Invalid mail id or password')
-    //         setEmail('');
-    //         setPassword('');
-    //     }
-    //     console.log(emailError, passwordError);
-
-    //     console.log(route.params.user.mail);
-
-    // }
-
     const userMail = 'gowrishankaroffl@gmail.com';
     const userPassword = 'sp315';
 
-    const { login } = useAuthContext();
+    const { handlingLogin, Auth } = useAuthContext();
 
     const handleLogin = async () => {
         try {
             if (email === userMail && password === userPassword) {
                 // set userToken
-                await login();
+                Auth.setAuth('Logging In')
+                await handlingLogin();
                 // navigate to HomeScreen
                 navigation.navigate('Tab');
             } else {
