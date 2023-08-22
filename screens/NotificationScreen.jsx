@@ -24,7 +24,6 @@ export function NotificationsScreen({ navigation }) {
     // get request method
     axios.get('https://jsonplaceholder.typicode.com/posts/1/comments')
       .then(res => {
-        console.log("Response", res.data);
         setData(res.data);
         setIsLoading(false)
       })
@@ -33,9 +32,6 @@ export function NotificationsScreen({ navigation }) {
       })
   }, [])
 
-  console.log('====================================');
-  console.log(data);
-  console.log('====================================');
 
 
   return (

@@ -79,7 +79,7 @@ const SignupScreen = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.loginCont}>
                 <Image
                     style={styles.logo}
@@ -147,7 +147,7 @@ const SignupScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </SafeAreaView>
+        </View>
     )
 }
 

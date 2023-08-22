@@ -116,19 +116,6 @@ const Products = () => {
     }
   })
 
-console.log(convertData);
-
-  const Item = ({ items }) => {
-    console.log(items, "ITEMS")
-    return (
-      <View>
-        <Text>₹{items.price}</Text>
-        <View>
-          <Text>{items.rating.rate}</Text>
-        </View>
-      </View>
-    )
-  }
 
   return (
     <View style={{ flex: 1 }}>

@@ -20,7 +20,7 @@ const MMKVScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.heading}>MMKV Storage Example</Text>
       <TextInput
         style={styles.input}
@@ -31,7 +31,7 @@ const MMKVScreen = () => {
       <Button title="Store Data" onPress={storeData} />
       <Button title="Retrieve Data" onPress={retrieveData} />
       <Text style={styles.storedValue}>Stored Value: {storedValue}</Text>
-    </SafeAreaView>
+    </View>
   );
 };
 

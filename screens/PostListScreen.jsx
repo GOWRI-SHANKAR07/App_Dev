@@ -24,14 +24,14 @@ const PostListScreen = () => {
 
 
   return (
-    <SafeAreaView style={{
+    <View style={{
       backgroundColor: colorScheme === 'dark' ? '#1a1111' : '#fff',
       marginTop: 25,
     }}>
 
       {isLoading ?
         (
-          <SafeAreaView
+          <View
             style={{
               backgroundColor: colorScheme === 'dark' ? '#1a1111' : "#fff",
               justifyContent: 'center',
@@ -47,21 +47,21 @@ const PostListScreen = () => {
               size={50}
               color= {colorScheme === 'dark' ? '#fff' : '#000'}
             />
-          </SafeAreaView>
+          </View>
         )
         :
         (
-          <SafeAreaView>
+          <View>
             <Text style={[styles.headerTxt, {color: colorScheme === 'dark' ? '#fff' : '#000'}]}>Product</Text>
             <FlatList
               data={newsData}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({item}) => <PostCard items={item} />}
             />
-          </SafeAreaView>
+          </View>
         )
       }
-    </SafeAreaView>
+    </View>
   );
 };
 
