@@ -15,7 +15,7 @@ const AuthContextProvider = ({ children }) => {
     const [auth, setAuth] = useState('');
 
     const Auth = useMemo(() => {
-        return { setAuth };
+        return { setAuth, handlingLogin, handlingLogout };
     }, [auth]);
 
     const login = async () => {
@@ -49,7 +49,7 @@ const AuthContextProvider = ({ children }) => {
     }, [auth])
 
     return (
-        <AuthContext.Provider value={{ handlingLogin, handlingLogout, Auth}} >
+        <AuthContext.Provider value={Auth} >
             {children}
         </AuthContext.Provider>
     )
