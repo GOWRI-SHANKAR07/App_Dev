@@ -15,16 +15,15 @@ const LoginScreen = ({ navigation, route }) => {
     const userMail = 'gowrishankaroffl@gmail.com';
     const userPassword = 'sp315';
 
-    const { handlingLogin, setAuth } = useAuthContext();
+    const { setAuth, setSubscribe, subscribe } = useAuthContext();
 
-    const handleLogin = async () => {
+    const handleLogin = () => {
         try {
             if (email === userMail && password === userPassword) {
-                // set userToken
-                setAuth('Logging In')
-                await handlingLogin;
-                // navigate to HomeScreen
-                navigation.navigate('Tab');
+                // user Subscribing
+                setAuth('Logged In');
+                setSubscribe('Subscribed');
+                console.log(subscribe);
             } else {
                 console.log("Invalid Credentials");
             }
