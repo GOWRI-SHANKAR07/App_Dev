@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { SafeAreaView, Text, StyleSheet } from 'react-native';
 import { useColorSchemeContext } from '../theme/ColorSchemeContext';
 import { Logout, ToggleTheme } from '../components/ToggleButton';
@@ -6,10 +6,11 @@ import { TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Profile';
 import { useAuthContext } from '../Auth/AuthContext';
 import { View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({ navigation }) => {
   const { colorScheme } = useColorSchemeContext(); // Access the color scheme
-  const { setAuth, setUnSubscribe, unSubscribe } = useAuthContext();
+  const { setAuth, setUnSubscribe, unSubscribe, setUserToken } = useAuthContext();
 
   const containerStyle = {
     ...styles.container,
@@ -21,9 +22,25 @@ const ProfileScreen = ({navigation}) => {
     color: colorScheme === 'dark' ? '#fff' : '#000',
   };
 
+  const logout = async () => {
+    try {
+      await AsyncStorage.removeItem('userToken');
+      setUserToken('');
+      navigation.navigate('Login');
+    } catch (err) {
+      console.log("Error Logging Out ", err);
+    }
+  };
+
+
+  const handlingLogout = useCallback(() => {
+    return logout();
+  }, [unSubscribe])
+
   const handleLogout = () => {
     setAuth('Logged Out');
     setUnSubscribe('Unsubscribed');
+    handlingLogout();
     console.log(unSubscribe);
   }
 
