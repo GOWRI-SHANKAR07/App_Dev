@@ -47,7 +47,7 @@ const SecureStorageScreen = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <Text style={styles.heading}>RN Secure Storage</Text>
             <TextInput
                 style={styles.input}
@@ -82,7 +82,7 @@ const SecureStorageScreen = () => {
                     <Text>Email: {storedUser.email}</Text>
                 </View>
             )}
-        </SafeAreaView>
+        </View>
     );
 };
 

@@ -10,7 +10,6 @@ export default class ScrolledViewScreen extends Component {
         return (
             <KeyboardAvoidingView>
                 <ScrollView>
-                    <SafeAreaView>
                         <Text style={{ fontSize: 20 }}>Scroll me plz</Text>
                         <Button title={'Button 1'} onPress={this.onPressButton} />
                         <Text style={{ fontSize: 20 }}>React Native Example of ScrollView</Text>
@@ -43,7 +42,6 @@ export default class ScrolledViewScreen extends Component {
                         <Button title={'Button 15'} onPress={this.onPressButton} />
                         <Text style={{ fontSize: 20 }}>Scrolling down</Text>
                         <Button title={'Button 16'} onPress={this.onPressButton} />
-                    </SafeAreaView>
                 </ScrollView>
             </KeyboardAvoidingView>
         );
