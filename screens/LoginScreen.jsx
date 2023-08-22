@@ -15,14 +15,14 @@ const LoginScreen = ({ navigation, route }) => {
     const userMail = 'gowrishankaroffl@gmail.com';
     const userPassword = 'sp315';
 
-    const { handlingLogin, Auth } = useAuthContext();
+    const { handlingLogin, setAuth } = useAuthContext();
 
     const handleLogin = async () => {
         try {
             if (email === userMail && password === userPassword) {
                 // set userToken
-                Auth.setAuth('Logging In')
-                await handlingLogin();
+                setAuth('Logging In')
+                await handlingLogin;
                 // navigate to HomeScreen
                 navigation.navigate('Tab');
             } else {

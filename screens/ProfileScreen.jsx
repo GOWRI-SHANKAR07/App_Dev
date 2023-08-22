@@ -9,7 +9,7 @@ import { View } from 'react-native';
 
 const ProfileScreen = ({navigation}) => {
   const { colorScheme } = useColorSchemeContext(); // Access the color scheme
-  const { handlingLogout, Auth } = useAuthContext();
+  const { handlingLogout, setAuth } = useAuthContext();
 
   const containerStyle = {
     ...styles.container,
@@ -22,8 +22,8 @@ const ProfileScreen = ({navigation}) => {
   };
 
   const handleLogout = () => {
-    Auth.setAuth('Logging Out')
-    handlingLogout();
+    setAuth('Logging Out')
+    handlingLogout;
     navigation.navigate('Login');
   }
 
