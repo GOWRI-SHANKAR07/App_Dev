@@ -9,20 +9,21 @@ export const useAuthContext = () => {
     return useContext(AuthContext);
 }
 
-const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = ({ children, navigation }) => {
 
     const [userToken, setUserToken] = useState('');
     const [auth, setAuth] = useState('');
-
-    const Auth = useMemo(() => {
-        return { setAuth, handlingLogin, handlingLogout };
-    }, [auth]);
+    const [subscribe, setSubscribe] = useState('');
+    const [unSubscribe, setUnSubscribe] = useState('');
 
     const login = async () => {
         try {
             const token = 'user123';
             await AsyncStorage.setItem('userToken', token);
             setUserToken(token);
+            navigation.navigate('Tab');
+            // navigate to HomeScreen
+            console.log('Login Pressed');
         } catch (err) {
             console.log("Error Logging In ", err);
         }
@@ -33,20 +34,23 @@ const AuthContextProvider = ({ children }) => {
             await AsyncStorage.removeItem('userToken');
             setUserToken('');
             console.log("Logout pressed");
+            navigation.navigate('Login');
         } catch (err) {
             console.log("Error Logging Out ", err);
         }
     };
 
-    // handling login in useCallback
-    const handlingLogin = useCallback(() => {
-        login();
+    const Auth = useMemo(() => {
+        return { setAuth, setSubscribe, setUnSubscribe, subscribe, unSubscribe };
     }, [auth])
 
-    // handling signup in useCallback
+    const handlingLogin = useCallback(() => {
+        return login(); 
+    }, [subscribe])
+
     const handlingLogout = useCallback(() => {
-        logout();
-    }, [auth])
+        return logout(); 
+    }, [unSubscribe])
 
     return (
         <AuthContext.Provider value={Auth} >
