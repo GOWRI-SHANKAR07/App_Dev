@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -12,6 +12,11 @@ export const useAuthContext = () => {
 const AuthContextProvider = ({ children }) => {
 
     const [userToken, setUserToken] = useState('');
+    const [auth, setAuth] = useState('');
+
+    const Auth = useMemo(() => {
+        return { setAuth };
+    }, [auth]);
 
     const login = async () => {
         try {
@@ -21,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
         } catch (err) {
             console.log("Error Logging In ", err);
         }
-    }
+    };
 
     const logout = async () => {
         try {
@@ -31,10 +36,20 @@ const AuthContextProvider = ({ children }) => {
         } catch (err) {
             console.log("Error Logging Out ", err);
         }
-    }
+    };
+
+    // handling login in useCallback
+    const handlingLogin = useCallback(() => {
+        login();
+    }, [auth])
+
+    // handling signup in useCallback
+    const handlingLogout = useCallback(() => {
+        logout();
+    }, [auth])
 
     return (
-        <AuthContext.Provider value={{ login, logout, user: userToken,}} >
+        <AuthContext.Provider value={{ handlingLogin, handlingLogout, Auth}} >
             {children}
         </AuthContext.Provider>
     )
