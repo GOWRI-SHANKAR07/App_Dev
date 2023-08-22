@@ -5,10 +5,11 @@ import { Logout, ToggleTheme } from '../components/ToggleButton';
 import { TouchableOpacity } from 'react-native';
 import { styles } from '../styles/Profile';
 import { useAuthContext } from '../Auth/AuthContext';
+import { View } from 'react-native';
 
 const ProfileScreen = ({navigation}) => {
   const { colorScheme } = useColorSchemeContext(); // Access the color scheme
-  const { logout } = useAuthContext();
+  const { handlingLogout, Auth } = useAuthContext();
 
   const containerStyle = {
     ...styles.container,
@@ -21,12 +22,13 @@ const ProfileScreen = ({navigation}) => {
   };
 
   const handleLogout = () => {
-    logout();
+    Auth.setAuth('Logging Out')
+    handlingLogout();
     navigation.navigate('Login');
   }
 
   return (
-    <SafeAreaView style={containerStyle}>
+    <View style={containerStyle}>
       <Text style={textStyle}>Welcome to Home Screen</Text>
       <Text style={textStyle}>{colorScheme === 'dark' ? 'Dark Mode' : 'Light Mode'}</Text>
       <ToggleTheme />
@@ -36,7 +38,7 @@ const ProfileScreen = ({navigation}) => {
       >
         <Text style={[styles.buttonText, { color: colorScheme === 'dark' ? '#000' : '#fff' }]}>Logout</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 };
 
