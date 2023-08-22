@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuthContext } from '../Auth/AuthContext';
@@ -15,7 +15,23 @@ const LoginScreen = ({ navigation, route }) => {
     const userMail = 'gowrishankaroffl@gmail.com';
     const userPassword = 'sp315';
 
-    const { setAuth, setSubscribe, subscribe } = useAuthContext();
+    const { setAuth, setSubscribe, subscribe, setUserToken } = useAuthContext();
+
+    const login = async () => {
+        try {
+            const token = 'user123';
+            await AsyncStorage.setItem('userToken', token);
+            setUserToken(token);
+            // navigate to HomeScreen
+            navigation.navigate('Tab');
+        } catch (err) {
+            console.log("Error Logging In ", err);
+        }
+    };
+
+    const handlingLogin = useCallback(() => {
+        return login(); 
+    }, [subscribe])
 
     const handleLogin = () => {
         try {
@@ -23,6 +39,7 @@ const LoginScreen = ({ navigation, route }) => {
                 // user Subscribing
                 setAuth('Logged In');
                 setSubscribe('Subscribed');
+                handlingLogin();
                 console.log(subscribe);
             } else {
                 console.log("Invalid Credentials");
