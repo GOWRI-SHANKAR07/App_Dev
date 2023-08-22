@@ -16,41 +16,17 @@ const AuthContextProvider = ({ children, navigation }) => {
     const [subscribe, setSubscribe] = useState('');
     const [unSubscribe, setUnSubscribe] = useState('');
 
-    const login = async () => {
-        try {
-            const token = 'user123';
-            await AsyncStorage.setItem('userToken', token);
-            setUserToken(token);
-            navigation.navigate('Tab');
-            // navigate to HomeScreen
-            console.log('Login Pressed');
-        } catch (err) {
-            console.log("Error Logging In ", err);
-        }
-    };
+    
 
-    const logout = async () => {
-        try {
-            await AsyncStorage.removeItem('userToken');
-            setUserToken('');
-            console.log("Logout pressed");
-            navigation.navigate('Login');
-        } catch (err) {
-            console.log("Error Logging Out ", err);
-        }
-    };
+
 
     const Auth = useMemo(() => {
-        return { setAuth, setSubscribe, setUnSubscribe, subscribe, unSubscribe };
-    }, [auth])
+        return { setAuth, setSubscribe, setUnSubscribe, subscribe, unSubscribe, setUserToken };
+    }, [auth, subscribe, unSubscribe, userToken])
 
-    const handlingLogin = useCallback(() => {
-        return login(); 
-    }, [subscribe])
+    
 
-    const handlingLogout = useCallback(() => {
-        return logout(); 
-    }, [unSubscribe])
+
 
     return (
         <AuthContext.Provider value={Auth} >
